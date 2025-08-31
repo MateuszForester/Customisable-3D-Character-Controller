@@ -52,6 +52,9 @@ public class ModularCharacterControllerScript : MonoBehaviour
     public LayerMask thirdPersonCameraCollisionMask;
     public float thirdPersonCollisionBuffer = 0.2f; // distance to keep from colliders
 
+    [Header("Animation Settings")]
+    public float transitionDuration = 0.05f; // adjust for smoothness
+
     private Vector3 velocity;
     private Vector3 capsuleTop;
     private Vector3 capsuleBottom;
@@ -71,10 +74,12 @@ public class ModularCharacterControllerScript : MonoBehaviour
     private float thirdPersonCurrentDistance;
     private float thirdPersonYaw = 0f;
     private float thirdPersonPitch = 20f; // start slightly above horizontal
+    private Animator animator;
 
     void Start()
     {
         playerCharacterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         groundCheck = transform.Find("GroundCheck");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -88,23 +93,50 @@ public class ModularCharacterControllerScript : MonoBehaviour
     {
         capsuleTop = transform.position;
         capsuleBottom = new Vector3(transform.position.x, capsuleTop.y - capsuleLength, transform.position.z);
-
         MouseLockToggle();
         CameraSwitch();
         MouseLook();
-        Movement();
+        Sprint(); 
+        Crouch();  
+        Movement(); 
         Dash();
         Gravity();
         Jump();
-        Sprint();
-        Crouch();
+        Animations(); // run animations last, after all states updated
 
         if (groundedCheck != (groundedCheck = IsGrounded()))
-        { 
+        {
             Debug.Log("Grounded state changed to: " + groundedCheck);
         }
-
         DebugDrawCapsule(capsuleTop, capsuleBottom, capsuleRadius, IsGrounded() ? Color.green : Color.red);
+    }
+
+    private string currentState = "";
+    void Animations()
+    {
+        string nextState = "Idle"; // default
+
+        if (isDashing)
+        {
+            nextState = "Dash";
+        }
+        else if (!IsGrounded())
+        {
+            nextState = "Jump";
+        }
+        else if (isCrouching)
+        {
+            nextState = (horizontalVelocity.magnitude > 0.1f) ? "CrouchWalk" : "CrouchIdle";
+        }
+        else if (horizontalVelocity.magnitude > 0.1f)
+        {
+            nextState = isSprinting ? "Run" : "Walk";
+        }
+        if (currentState != nextState)
+        {
+            animator.CrossFadeInFixedTime(nextState, transitionDuration);
+            currentState = nextState;
+        }
     }
 
     public bool IsGrounded()
@@ -113,8 +145,6 @@ public class ModularCharacterControllerScript : MonoBehaviour
         return isGrounded;
     }
 
-
-    #region Movement & Gravity
     void Movement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -138,6 +168,8 @@ public class ModularCharacterControllerScript : MonoBehaviour
 
         if (moveInput.sqrMagnitude > 0.001f)
             moveInput.Normalize();
+        else
+            moveInput = Vector3.zero; // explicitly zero if no input
 
         float currentSpeed = baseMovementSpeed;
         if (isCrouching) currentSpeed = crouchSpeed;
@@ -152,7 +184,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
         {
             if (allowAirControl)
                 horizontalVelocity = moveInput * currentSpeed;
-            // else horizontalVelocity stays as-is (from last grounded or previous jump)
+            // else horizontalVelocity stays as-is
         }
 
         Vector3 totalMove = horizontalVelocity * Time.deltaTime + Vector3.up * velocity.y * Time.deltaTime;
@@ -171,9 +203,6 @@ public class ModularCharacterControllerScript : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Jumping
     void Jump()
     {
         bool grounded = IsGrounded();
@@ -218,8 +247,6 @@ public class ModularCharacterControllerScript : MonoBehaviour
         }
     }
 
-    #endregion
-
     private void Sprint()
     {
         if (sprintToggle)
@@ -242,7 +269,6 @@ public class ModularCharacterControllerScript : MonoBehaviour
         }
     }
 
-    #region Crouching
     void Crouch()
     {
         if (crouchToggle)
@@ -295,7 +321,10 @@ public class ModularCharacterControllerScript : MonoBehaviour
             dashDirection = inputDir.normalized;
             dashRemainingDistance = dashDistance;
             isDashing = true;
-            dashCooldownTimer = dashCooldown; // start cooldown
+            dashCooldownTimer = dashCooldown;
+
+            // Trigger animation when dash *actually starts*
+            animator.SetTrigger("IsDash");
         }
 
         // Execute dash
@@ -336,9 +365,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
         isCrouching = crouch;
         playerCharacterController.height = crouch ? crouchHeight : standingHeight;
     }
-    #endregion
 
-    #region Camera
     void CameraSwitch()
     {
         if (Input.GetKeyDown(switchCameraKey))
@@ -437,9 +464,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
         playerCameraThirdPerson.LookAt(pivotPos);      // look at pivot
 
     }
-    #endregion
 
-    #region Cursor Lock
     void MouseLockToggle()
     {
         if (Input.GetKeyDown(lockMouseKey))
@@ -449,7 +474,6 @@ public class ModularCharacterControllerScript : MonoBehaviour
             Cursor.visible = !cursorLocked;
         }
     }
-    #endregion
 
     void DebugDrawCapsule(Vector3 start, Vector3 end, float radius, Color color)
     {
