@@ -3,7 +3,7 @@ using UnityEngine;
 public class AnimationModule : MonoBehaviour
 {
     [Header("Animation Settings")]
-    public float transitionDuration = 0.25f; // adjust for smoothness
+    public float transitionDuration = 0.25f;
 
     private ModularCharacterControllerScript controller;
     private string currentState = "";

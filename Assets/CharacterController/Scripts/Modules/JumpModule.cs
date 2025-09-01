@@ -4,11 +4,11 @@ public class JumpModule : MonoBehaviour
 {
     [Header("Jumping Settings")]
     public float jumpHeight = 15f;
-    public bool allowAirControl = true; // toggle mid-air movement
-    public bool allowMultiJump = true;       // toggle multiple jumps
-    public bool omniDirectionalJump = true;  // if true, jumps can be in any direction
-    public int maxAdditionalJumpCount = 2;             // how many jumps before landing
-    private int currentJumpCount = 0;        // tracks jumps used
+    public bool allowAirControl = true; 
+    public bool allowMultiJump = true; 
+    public bool omniDirectionalJump = true; 
+    public int maxAdditionalJumpCount = 2;
+    private int currentJumpCount = 0;
 
     private ModularCharacterControllerScript controller;
     private CameraModule cameraModuleScript;

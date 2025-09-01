@@ -14,6 +14,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
     public bool sprintModule;
     public bool crouchModule;
     public bool dashModule;
+    public bool wallRunningModule;
     public bool animationModule;
 
     [HideInInspector] public CameraModule cameraModuleScript;
@@ -21,6 +22,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
     [HideInInspector] public SprintModule sprintModuleScript;
     [HideInInspector] public CrouchModule crouchModuleScript;
     [HideInInspector] public DashModule dashModuleScript;
+    [HideInInspector] public WallRunningModule wallRunningModuleScript;
     [HideInInspector] public AnimationModule animationModuleScript;
 
     [Header("Base Settings")]
@@ -31,29 +33,47 @@ public class ModularCharacterControllerScript : MonoBehaviour
     public float capsuleLength = 10f;
     public KeyCode lockMouseKey = KeyCode.Tab;
     public LayerMask groundMask;
-    
-    internal Vector3 velocity;
-    internal Vector3 horizontalVelocity = Vector3.zero;
-    internal bool isSprinting = false;
-    internal bool isCrouching = false;
-    internal Vector3 dashDirection;          // direction of the current dash
-    internal bool isDashing = false;         // is a dash currently happening
-    internal float dashRemainingDistance;    // tracks remaining dash distance
-    internal float dashCooldownTimer = 0f; // tracks cooldown
-    internal bool firstPersonActive = true;
-    internal bool cursorLocked = true;
+
+    internal float dashRemainingDistance;
+    internal float dashCooldownTimer = 0f;
     internal float xRotation = 0f;
     internal float thirdPersonTargetDistance;
     internal float thirdPersonCurrentDistance;
     internal float thirdPersonYaw = 0f;
-    internal float thirdPersonPitch = 20f; // start slightly above horizontal
+    internal float thirdPersonPitch = 20f;
+    internal float wallRunCooldownTimer = 0f;
+    internal float cameraRotationTimer = 0f;
+    internal float currentWallRunTimer;
+    internal float wallRunStartHeight;
+    internal float finalWallMovementSpeed;
+    internal float wallRunSpeed;
+    internal bool wallOnRight;
+    internal bool wallOnLeft;
+    internal bool isSmoothingCameraRotation = false;
+    internal bool isSprinting = false;
+    internal bool isCrouching = false;
+    internal bool isDashing = false;
+    internal bool firstPersonActive = true;
+    internal bool cursorLocked = true;
+    internal bool isWallRunning = false;
+    internal bool wallRunCooldownActive = false;
+    internal Vector3 velocity;
+    internal Vector3 horizontalVelocity = Vector3.zero;
+    internal Vector3 dashDirection;
+    internal Vector3 wallNormal;
+    internal Vector3 wallRunMoveDirection = Vector3.zero;
+    internal Vector3 wallRunVerticalVelocity = Vector3.zero;
+    internal Vector3 cachedWallForward;
+    internal Vector3 wallRunDirection;
     internal Animator animator;
+    internal Quaternion targetPlayerRotation;
+    internal Quaternion targetCameraRotation;
 
+    private bool groundedCheck;
     private Vector3 capsuleTop;
     private Vector3 capsuleBottom;
     private Vector3 lastGroundedMove = Vector3.zero;
-    private bool groundedCheck;
-    
+
     void OnValidate()
     {
         SetupModule(ref cameraModuleScript, cameraModule);
@@ -61,10 +81,10 @@ public class ModularCharacterControllerScript : MonoBehaviour
         SetupModule(ref sprintModuleScript, sprintModule);
         SetupModule(ref crouchModuleScript, crouchModule);
         SetupModule(ref dashModuleScript, dashModule);
+        SetupModule(ref wallRunningModuleScript, wallRunningModule);
         SetupModule(ref animationModuleScript, animationModule);
     }
 
-    // automatic attaching and detaching of modules
     void SetupModule<T>(ref T module, bool enabled) where T : Behaviour
     {
         if (enabled)
@@ -79,18 +99,15 @@ public class ModularCharacterControllerScript : MonoBehaviour
             if (module != null)
             {
 #if UNITY_EDITOR
-                // Capture the component in a local variable (not ref)
                 T moduleToRemove = module;
                 EditorApplication.delayCall += () =>
                 {
                     if (moduleToRemove != null)
                     {
                         DestroyImmediate(moduleToRemove);
-                        // Mark scene dirty so changes are saved
                         EditorUtility.SetDirty(gameObject);
                     }
                 };
-                // Set the original ref variable to null immediately after scheduling removal
                 module = null;
 #else
             Destroy(module);
@@ -107,16 +124,21 @@ public class ModularCharacterControllerScript : MonoBehaviour
         groundCheck = transform.Find("GroundCheck");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        cameraModuleScript.ActivateFirstPersonCamera();
 
-        thirdPersonTargetDistance = cameraModuleScript.thirdPersonMaxDistance;
-        thirdPersonCurrentDistance = cameraModuleScript.thirdPersonMaxDistance;
+        if (cameraModuleScript != null)
+        {
+            cameraModuleScript.ActivateFirstPersonCamera();
+            thirdPersonTargetDistance = cameraModuleScript.thirdPersonMaxDistance;
+            thirdPersonCurrentDistance = cameraModuleScript.thirdPersonMaxDistance;
+        }
+
 
         if (cameraModule) cameraModuleScript?.Initialize(this);
         if (jumpModule) jumpModuleScript?.Initialize(this);
         if (sprintModule) sprintModuleScript?.Initialize(this);
         if (crouchModule) crouchModuleScript?.Initialize(this);
         if (dashModule) dashModuleScript?.Initialize(this);
+        if (wallRunningModule) wallRunningModuleScript?.Initialize(this);
         if (animationModule) animationModuleScript?.Initialize(this);
     }
 
@@ -133,13 +155,20 @@ public class ModularCharacterControllerScript : MonoBehaviour
         if (crouchModule) crouchModuleScript?.Crouch();
         if (dashModule) dashModuleScript?.Dash();
         if (jumpModule) jumpModuleScript?.Jump();
-        if (animationModule) animationModuleScript?.Animations(); // run animations last, after all states updated
+        if (wallRunningModule) wallRunningModuleScript?.HorizontalWallMovement();
+        if (animationModule) animationModuleScript?.Animations();
 
         if (groundedCheck != (groundedCheck = IsGrounded()))
         {
             Debug.Log("Grounded state changed to: " + groundedCheck);
         }
         DebugDrawCapsule(capsuleTop, capsuleBottom, capsuleRadius, IsGrounded() ? Color.green : Color.red);
+
+        if (wallRunningModuleScript != null)
+        {
+            Debug.DrawRay(transform.position, transform.right * wallRunningModuleScript.wallCheckDistance, Color.red);
+            Debug.DrawRay(transform.position, -transform.right * wallRunningModuleScript.wallCheckDistance, Color.blue);
+        }
     }
 
     void Gravity()
@@ -166,29 +195,40 @@ public class ModularCharacterControllerScript : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 moveInput = Vector3.zero;
+
+        if (isWallRunning)
+        {
+            horizontalVelocity = Vector3.zero;
+            return;
+        }
+
+
         if (firstPersonActive)
             moveInput = transform.TransformDirection(new Vector3(horizontal, 0f, vertical));
         else
         {
-            Vector3 camForward = cameraModuleScript.playerCameraThirdPerson.forward;
-            camForward.y = 0f;
-            camForward.Normalize();
+            if (cameraModuleScript != null)
+            {
+                Vector3 camForward = cameraModuleScript.playerCameraThirdPerson.forward;
+                camForward.y = 0f;
+                camForward.Normalize();
 
-            Vector3 camRight = cameraModuleScript.playerCameraThirdPerson.right;
-            camRight.y = 0f;
-            camRight.Normalize();
+                Vector3 camRight = cameraModuleScript.playerCameraThirdPerson.right;
+                camRight.y = 0f;
+                camRight.Normalize();
 
-            moveInput = camForward * vertical + camRight * horizontal;
+                moveInput = camForward * vertical + camRight * horizontal;
+            }
         }
 
         if (moveInput.sqrMagnitude > 0.001f)
             moveInput.Normalize();
         else
-            moveInput = Vector3.zero; // explicitly zero if no input
+            moveInput = Vector3.zero; 
 
         float currentSpeed = baseMovementSpeed;
-        if (isCrouching) currentSpeed = crouchModuleScript.crouchSpeed;
-        else if (isSprinting) currentSpeed = sprintModuleScript.sprintSpeed;
+        if (isCrouching && crouchModuleScript != null) currentSpeed = crouchModuleScript.crouchSpeed;
+        else if (isSprinting && sprintModuleScript != null) currentSpeed = sprintModuleScript.sprintSpeed;
 
         if (IsGrounded())
         {
@@ -197,9 +237,8 @@ public class ModularCharacterControllerScript : MonoBehaviour
         }
         else
         {
-            if (jumpModuleScript.allowAirControl)
+            if (jumpModuleScript != null && jumpModuleScript.allowAirControl)
                 horizontalVelocity = moveInput * currentSpeed;
-            // else horizontalVelocity stays as-is
         }
 
         Vector3 totalMove = horizontalVelocity * Time.deltaTime + Vector3.up * velocity.y * Time.deltaTime;
@@ -218,13 +257,11 @@ public class ModularCharacterControllerScript : MonoBehaviour
 
     void DebugDrawCapsule(Vector3 start, Vector3 end, float radius, Color color)
     {
-        // Draw top and bottom spheres
         Debug.DrawLine(start + Vector3.forward * radius, start - Vector3.forward * radius, color);
         Debug.DrawLine(start + Vector3.right * radius, start - Vector3.right * radius, color);
         Debug.DrawLine(end + Vector3.forward * radius, end - Vector3.forward * radius, color);
         Debug.DrawLine(end + Vector3.right * radius, end - Vector3.right * radius, color);
 
-        // Draw lines connecting top and bottom
         Debug.DrawLine(start + Vector3.forward * radius, end + Vector3.forward * radius, color);
         Debug.DrawLine(start - Vector3.forward * radius, end - Vector3.forward * radius, color);
         Debug.DrawLine(start + Vector3.right * radius, end + Vector3.right * radius, color);

@@ -3,8 +3,8 @@ using UnityEngine;
 public class SprintModule : MonoBehaviour
 {
     [Header("Sprint Settings")]
-    public float sprintSpeed = 75f; // extra speed while sprinting
-    public bool sprintToggle = false; // true = toggle, false = hold
+    public float sprintSpeed = 75f;
+    public bool sprintToggle = false;
     public KeyCode sprintKey = KeyCode.LeftShift;
 
     private ModularCharacterControllerScript controller;

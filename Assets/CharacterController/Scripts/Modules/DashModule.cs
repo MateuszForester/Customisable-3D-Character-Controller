@@ -3,7 +3,7 @@ using UnityEngine;
 public class DashModule : MonoBehaviour
 {
     [Header("Dash Settings")]
-    public float dashCooldown = 1f; // time in seconds between dashes
+    public float dashCooldown = 1f;
     public float dashDistance = 50f;
     public float dashSpeed = 200f;
     public bool allowAirDash = true;

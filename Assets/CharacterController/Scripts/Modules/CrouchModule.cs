@@ -3,10 +3,10 @@ using UnityEngine;
 public class CrouchModule : MonoBehaviour
 {
     [Header("Crouch Settings")]
-    public float crouchHeight = 2f; //does nothing, lower the value for it to take effect
+    public float crouchHeight = 2f;
     public float standingHeight = 2f;
-    public float crouchSpeed = 15f; // movement speed while crouching
-    public bool crouchToggle = false; // true = toggle, false = hold
+    public float crouchSpeed = 15f;
+    public bool crouchToggle = false;
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     private ModularCharacterControllerScript controller;
