@@ -21,6 +21,14 @@ public class AnimationModule : MonoBehaviour
         {
             nextState = "Dash";
         }
+        else if (controller.isWallClimbing)
+        {
+            nextState = "WallClimb";
+        }
+        else if (controller.isWallRunning)
+        {
+            nextState = "WallRun";
+        }
         else if (!controller.IsGrounded())
         {
             nextState = "Jump";

@@ -14,7 +14,7 @@ public class CameraModule : MonoBehaviour
     public KeyCode switchCameraKey = KeyCode.V;
 
     private ModularCharacterControllerScript controller;
-    
+
     public void Initialize(ModularCharacterControllerScript characterController)
     {
         controller = characterController;
@@ -51,37 +51,39 @@ public class CameraModule : MonoBehaviour
 
         if (controller.isWallRunning)
         {
-            controller.xRotation -= mouseY;
-            controller.xRotation = Mathf.Clamp(controller.xRotation, -90f, 90f);
-
             if (controller.firstPersonActive && playerCameraFirstPerson != null)
             {
-                Quaternion targetRotation = Quaternion.Euler(controller.xRotation, controller.transform.eulerAngles.y, 0f);
-
-                Vector3 currentEuler = playerCameraFirstPerson.localRotation.eulerAngles;
-                float smoothPitch = Mathf.LerpAngle(currentEuler.x, controller.xRotation, Time.deltaTime * 10f);
-                playerCameraFirstPerson.localRotation = Quaternion.Euler(smoothPitch, 0f, 0f);
-
-                controller.transform.Rotate(Vector3.up * mouseX);
+                controller.firstPersonCameraPitch -= mouseY;
+                controller.firstPersonCameraPitch = Mathf.Clamp(controller.firstPersonCameraPitch, -90f, 90f);
+                playerCameraFirstPerson.localRotation = Quaternion.Euler(controller.firstPersonCameraPitch, 0f, 0f);
             }
             else if (!controller.firstPersonActive && playerCameraThirdPerson != null)
             {
-                Vector3 lookAtPoint = controller.transform.position + controller.transform.forward;
-                Vector3 flatLookDir = (lookAtPoint - playerCameraThirdPerson.position).normalized;
-                flatLookDir.y = 0f;
-                if (flatLookDir.sqrMagnitude > 0.001f) flatLookDir.Normalize();
+                OrbitCamera(mouseX, mouseY, true);
+            }
+            return;
+        }
 
-                Quaternion targetRotation = Quaternion.LookRotation(flatLookDir, Vector3.up) * Quaternion.Euler(controller.xRotation, 0f, 0f);
-                playerCameraThirdPerson.rotation = Quaternion.Slerp(playerCameraThirdPerson.rotation, targetRotation, Time.deltaTime * 10f);
+        if (controller.isWallClimbing)
+        {
+            if (controller.firstPersonActive && playerCameraFirstPerson != null)
+            {
+                controller.firstPersonCameraPitch -= mouseY;
+                controller.firstPersonCameraPitch = Mathf.Clamp(controller.firstPersonCameraPitch, -90f, 90f);
+                playerCameraFirstPerson.localRotation = Quaternion.Euler(controller.firstPersonCameraPitch, 0f, 0f);
+            }
+            else if (!controller.firstPersonActive && playerCameraThirdPerson != null)
+            {
+                OrbitCamera(mouseX, mouseY, true);
             }
             return;
         }
 
         if (controller.firstPersonActive && playerCameraFirstPerson != null)
         {
-            controller.xRotation -= mouseY;
-            controller.xRotation = Mathf.Clamp(controller.xRotation, -90f, 90f);
-            playerCameraFirstPerson.localRotation = Quaternion.Euler(controller.xRotation, 0f, 0f);
+            controller.firstPersonCameraPitch -= mouseY;
+            controller.firstPersonCameraPitch = Mathf.Clamp(controller.firstPersonCameraPitch, -90f, 90f);
+            playerCameraFirstPerson.localRotation = Quaternion.Euler(controller.firstPersonCameraPitch, 0f, 0f);
             controller.transform.Rotate(Vector3.up * mouseX);
             return;
         }
@@ -92,43 +94,46 @@ public class CameraModule : MonoBehaviour
         }
     }
 
-    public void OrbitCamera(float mouseX, float mouseY)
+    public void OrbitCamera(float mouseX, float mouseY, bool disablePlayerRotation = false)
     {
-        if (controller.firstPersonActive || controller.isWallRunning) return;
+        if (controller.firstPersonActive) return;
 
-        controller.thirdPersonYaw += mouseX;
-        controller.thirdPersonPitch -= mouseY;
-        controller.thirdPersonPitch = Mathf.Clamp(controller.thirdPersonPitch, -80f, 80f);
+        controller.thirdPersonCameraYaw += mouseX;
+        controller.thirdPersonCameraPitch -= mouseY;
+        controller.thirdPersonCameraPitch = Mathf.Clamp(controller.thirdPersonCameraPitch, -80f, 80f);
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        controller.thirdPersonTargetDistance -= scroll * thirdPersonScrollSensitivity;
-        controller.thirdPersonTargetDistance = Mathf.Clamp(controller.thirdPersonTargetDistance, thirdPersonMinDistance, thirdPersonMaxDistance);
+        controller.thirdPersonCameraTargetDistance -= scroll * thirdPersonScrollSensitivity;
+        controller.thirdPersonCameraTargetDistance = Mathf.Clamp(controller.thirdPersonCameraTargetDistance, thirdPersonMinDistance, thirdPersonMaxDistance);
 
-        Vector3 camForward = Quaternion.Euler(0f, controller.thirdPersonYaw, 0f) * Vector3.forward;
-        float rotationSpeed = 10f;
-        controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation,
-                                                        Quaternion.LookRotation(camForward),
-                                                        rotationSpeed * Time.deltaTime);
+        if (!disablePlayerRotation)
+        {
+            Vector3 camForward = Quaternion.Euler(0f, controller.thirdPersonCameraYaw, 0f) * Vector3.forward;
+            float rotationSpeed = 10f;
+            controller.transform.rotation = Quaternion.Slerp(controller.transform.rotation,
+                                                            Quaternion.LookRotation(camForward),
+                                                            rotationSpeed * Time.deltaTime);
+        }
 
         if (playerCameraThirdPerson == null || playerCameraThirdPerson.parent == null) return;
         Transform cameraPivot = playerCameraThirdPerson.parent.Find("CameraPivot");
         if (cameraPivot == null) return;
 
         Vector3 pivotPos = cameraPivot.position;
-        Vector3 direction = Quaternion.Euler(controller.thirdPersonPitch, controller.thirdPersonYaw, 0f) * Vector3.forward;
-        Vector3 desiredPos = pivotPos - direction * controller.thirdPersonTargetDistance;
+        Vector3 direction = Quaternion.Euler(controller.thirdPersonCameraPitch, controller.thirdPersonCameraYaw, 0f) * Vector3.forward;
+        Vector3 desiredPos = pivotPos - direction * controller.thirdPersonCameraTargetDistance;
 
         RaycastHit hit;
         float collisionRadius = 0.2f;
         if (Physics.SphereCast(pivotPos, collisionRadius, (desiredPos - pivotPos).normalized,
-                               out hit, controller.thirdPersonTargetDistance, thirdPersonCameraCollisionMask))
+                               out hit, controller.thirdPersonCameraTargetDistance, thirdPersonCameraCollisionMask))
         {
-            controller.thirdPersonCurrentDistance = Mathf.Clamp(hit.distance - thirdPersonCollisionBuffer, thirdPersonMinDistance, thirdPersonMaxDistance);
-            desiredPos = pivotPos - direction * controller.thirdPersonCurrentDistance;
+            controller.thirdPersonCameraCurrentDistance = Mathf.Clamp(hit.distance - thirdPersonCollisionBuffer, thirdPersonMinDistance, thirdPersonMaxDistance);
+            desiredPos = pivotPos - direction * controller.thirdPersonCameraCurrentDistance;
         }
         else
         {
-            controller.thirdPersonCurrentDistance = controller.thirdPersonTargetDistance;
+            controller.thirdPersonCameraCurrentDistance = controller.thirdPersonCameraTargetDistance;
         }
 
         playerCameraThirdPerson.position = desiredPos;

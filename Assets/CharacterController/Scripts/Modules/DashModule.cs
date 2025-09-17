@@ -12,9 +12,10 @@ public class DashModule : MonoBehaviour
     private ModularCharacterControllerScript controller;
     private CameraModule cameraModuleScript;
 
-    public void Initialize(ModularCharacterControllerScript characterController)
+    public void Initialize(ModularCharacterControllerScript characterController, CameraModule cameraModule)
     {
         controller = characterController;
+        cameraModuleScript = cameraModule;
     }
 
     public void Dash()
@@ -56,7 +57,7 @@ public class DashModule : MonoBehaviour
             if (dashStep > controller.dashRemainingDistance)
                 dashStep = controller.dashRemainingDistance;
 
-            Vector3 move = controller.dashDirection * dashStep + Vector3.up * controller.velocity.y * Time.deltaTime;
+            Vector3 move = controller.dashDirection * dashStep + Vector3.up * controller.totalVelocity.y * Time.deltaTime;
             controller.playerCharacterController.Move(move);
 
             controller.dashRemainingDistance -= dashStep;

@@ -8,11 +8,12 @@ public class SprintModule : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
 
     private ModularCharacterControllerScript controller;
-    private CrouchModule crouchModule;
+    private CrouchModule crouchModuleScript;
 
-    public void Initialize(ModularCharacterControllerScript characterController)
+    public void Initialize(ModularCharacterControllerScript characterController, CrouchModule crouchModule)
     {
         controller = characterController;
+        crouchModuleScript = crouchModule;
     }
 
     public void Sprint()
@@ -22,6 +23,7 @@ public class SprintModule : MonoBehaviour
             if (Input.GetKeyDown(sprintKey))
             {
                 ToggleSprint();
+                crouchModuleScript.SetCrouch(false);
             }
         }
         else
@@ -40,9 +42,8 @@ public class SprintModule : MonoBehaviour
     public void ToggleSprint()
     {
         controller.isSprinting = !controller.isSprinting;
-        // Optional: disable crouch when sprinting
         if (controller.isSprinting)
-            crouchModule.SetCrouch(false);
+            crouchModuleScript.SetCrouch(false);
     }
 
     public void SetSprint(bool sprint)

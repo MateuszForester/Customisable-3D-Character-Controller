@@ -46,23 +46,25 @@ public class WallRunningModule : MonoBehaviour
         RaycastHit rightHit;
         RaycastHit leftHit;
 
-        controller.wallOnRight = Physics.Raycast(transform.position, transform.right, out rightHit, wallCheckDistance, wallMask);
-        controller.wallOnLeft = Physics.Raycast(transform.position, -transform.right, out leftHit, wallCheckDistance, wallMask);
+        controller.isWallOnRight = Physics.Raycast(transform.position, transform.right, out rightHit, wallCheckDistance, wallMask);
+        controller.isWallOnLeft = Physics.Raycast(transform.position, -transform.right, out leftHit, wallCheckDistance, wallMask);
 
-        if (controller.wallOnRight)
-            controller.wallNormal = rightHit.normal;
-        else if (controller.wallOnLeft)
-            controller.wallNormal = leftHit.normal;
+        if (controller.isWallOnRight)
+            controller.currentWallNormal = rightHit.normal;
+        else if (controller.isWallOnLeft)
+            controller.currentWallNormal = leftHit.normal;
     }
 
     private bool CanStartWallRun()
     {
         if (controller.wallRunCooldownActive) return false;
         if (controller.IsGrounded()) return false;
-        if (!(controller.wallOnRight || controller.wallOnLeft)) return false;
+        if (!(controller.isWallOnRight || controller.isWallOnLeft)) return false;
 
         float forwardInput = Input.GetAxisRaw("Vertical");
         if (forwardInput < 0.1f) return false;
+
+        if (controller.totalVelocity.y <= 0f) return false;
 
         if (requireSprint && !controller.isSprinting) return false;
 
@@ -72,19 +74,19 @@ public class WallRunningModule : MonoBehaviour
     private void StartWallRun()
     {
         controller.isWallRunning = true;
-        controller.currentWallRunTimer = 0f;
+        controller.wallRunDurationTimer = 0f;
 
-        controller.wallRunDirection = Vector3.ProjectOnPlane(transform.forward, controller.wallNormal).normalized;
-        controller.targetPlayerRotation = Quaternion.LookRotation(controller.wallRunDirection, Vector3.up);
+        controller.wallRunDirection = Vector3.ProjectOnPlane(transform.forward, controller.currentWallNormal).normalized;
+        controller.wallRunTargetPlayerRotation = Quaternion.LookRotation(controller.wallRunDirection, Vector3.up);
 
-        controller.wallRunStartHeight = transform.position.y;
+        controller.initialWallRunHeight = transform.position.y;
 
-        if (controller.velocity.y < 0f)
-            controller.velocity.y = 0f;
+        if (controller.totalVelocity.y < 0f)
+            controller.totalVelocity.y = 0f;
 
         float forwardInput = Mathf.Clamp01(Input.GetAxisRaw("Vertical"));
-        controller.wallRunSpeed = controller.isSprinting ? sprintWallRunSpeed : walkWallRunSpeed;
-        controller.wallRunSpeed *= forwardInput;
+        controller.currentWallRunSpeed = controller.isSprinting ? sprintWallRunSpeed : walkWallRunSpeed;
+        controller.currentWallRunSpeed *= forwardInput;
     }
 
     private void StopWallRun()
@@ -96,15 +98,14 @@ public class WallRunningModule : MonoBehaviour
 
     private void DoWallRun()
     {
-        if (!(controller.wallOnRight || controller.wallOnLeft))
+        if (!(controller.isWallOnRight || controller.isWallOnLeft))
         {
             StopWallRun();
             return;
         }
 
         Vector3 wallForward = controller.wallRunDirection;
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, controller.targetPlayerRotation, playerRotationSmoothSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, controller.wallRunTargetPlayerRotation, playerRotationSmoothSpeed * Time.deltaTime);
 
         float forwardInput = Input.GetAxisRaw("Vertical");
         if (forwardInput <= 0f)
@@ -112,18 +113,18 @@ public class WallRunningModule : MonoBehaviour
             StopWallRun();
             return;
         }
-        Vector3 wallMove = wallForward * controller.wallRunSpeed * Time.deltaTime;
 
-        float targetY = controller.wallRunStartHeight;
+        Vector3 wallMove = wallForward * controller.currentWallRunSpeed * Time.deltaTime;
+
+        float targetY = controller.initialWallRunHeight;
         float verticalDelta = targetY - transform.position.y;
         wallMove.y = verticalDelta;
 
         controller.playerCharacterController.Move(wallMove);
+        controller.totalVelocity.y = Mathf.Max(controller.totalVelocity.y * Time.deltaTime, -controller.gravity);
 
-        controller.velocity.y = Mathf.Max(controller.velocity.y * Time.deltaTime, -controller.gravity);
-
-        controller.currentWallRunTimer += Time.deltaTime;
-        if (controller.currentWallRunTimer >= maxWallRunDuration)
+        controller.wallRunDurationTimer += Time.deltaTime;
+        if (controller.wallRunDurationTimer >= maxWallRunDuration)
         {
             StopWallRun();
             return;

@@ -6,7 +6,6 @@ using UnityEditor;
 public class ModularCharacterControllerScript : MonoBehaviour
 {
     internal CharacterController playerCharacterController;
-    private Transform groundCheck;
 
     [Header("Additional Modules")]
     public bool cameraModule;
@@ -16,6 +15,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
     public bool dashModule;
     public bool wallRunningModule;
     public bool animationModule;
+    public bool wallClimbModule;
 
     [HideInInspector] public CameraModule cameraModuleScript;
     [HideInInspector] public JumpModule jumpModuleScript;
@@ -24,55 +24,70 @@ public class ModularCharacterControllerScript : MonoBehaviour
     [HideInInspector] public DashModule dashModuleScript;
     [HideInInspector] public WallRunningModule wallRunningModuleScript;
     [HideInInspector] public AnimationModule animationModuleScript;
+    [HideInInspector] public WallClimbModule wallClimbModuleScript;
 
     [Header("Base Settings")]
     public float baseMovementSpeed = 50f;
     public float gravity = 100f;
-    public float capsuleGroundDistance = 0.2f;
-    public float capsuleRadius = 4.5f;
-    public float capsuleLength = 10f;
+    public float capsuleRadius = 2.5f;
+    public float capsuleHeight = 10f;
     public KeyCode lockMouseKey = KeyCode.Tab;
     public LayerMask groundMask;
 
-    internal float dashRemainingDistance;
-    internal float dashCooldownTimer = 0f;
-    internal float xRotation = 0f;
-    internal float thirdPersonTargetDistance;
-    internal float thirdPersonCurrentDistance;
-    internal float thirdPersonYaw = 0f;
-    internal float thirdPersonPitch = 20f;
-    internal float wallRunCooldownTimer = 0f;
-    internal float cameraRotationTimer = 0f;
-    internal float currentWallRunTimer;
-    internal float wallRunStartHeight;
-    internal float finalWallMovementSpeed;
-    internal float wallRunSpeed;
-    internal bool wallOnRight;
-    internal bool wallOnLeft;
-    internal bool isSmoothingCameraRotation = false;
-    internal bool isSprinting = false;
-    internal bool isCrouching = false;
-    internal bool isDashing = false;
+    // Camera
+    internal float firstPersonCameraPitch = 0f;
+    internal float thirdPersonCameraTargetDistance;
+    internal float thirdPersonCameraCurrentDistance;
+    internal float thirdPersonCameraYaw = 0f;
+    internal float thirdPersonCameraPitch = 20f;
     internal bool firstPersonActive = true;
     internal bool cursorLocked = true;
+
+    // Movement
+    internal Vector3 totalVelocity;
+    internal Vector3 horizontalVelocity = Vector3.zero;
+    internal bool isSprinting = false;
+    internal bool isCrouching = false;
+
+    // Dashing
+    internal float dashRemainingDistance;
+    internal float dashCooldownTimer = 0f;
+    internal bool isDashing = false;
+    internal Vector3 dashDirection;
+
+    // Jumping
+    internal int currentJumpCount = 0;
+    internal bool isWallBouncing = false;
+    internal Quaternion wallBounceTargetRotation;
+
+    // Wall Running
+    internal float wallRunCooldownTimer = 0f;
+    internal float wallRunDurationTimer;
+    internal float initialWallRunHeight;
+    internal float currentWallRunSpeed;
+    internal bool isWallOnRight;
+    internal bool isWallOnLeft;
     internal bool isWallRunning = false;
     internal bool wallRunCooldownActive = false;
-    internal Vector3 velocity;
-    internal Vector3 horizontalVelocity = Vector3.zero;
-    internal Vector3 dashDirection;
-    internal Vector3 wallNormal;
-    internal Vector3 wallRunMoveDirection = Vector3.zero;
-    internal Vector3 wallRunVerticalVelocity = Vector3.zero;
-    internal Vector3 cachedWallForward;
+    internal Vector3 currentWallNormal;
     internal Vector3 wallRunDirection;
-    internal Animator animator;
-    internal Quaternion targetPlayerRotation;
-    internal Quaternion targetCameraRotation;
+    internal Quaternion wallRunTargetPlayerRotation;
 
-    private bool groundedCheck;
+    // Wall Climbing
+    internal bool isWallClimbing = false;
+    internal bool isClimbKeyPressed = false;
+    internal bool climbKeyConsumed = false;
+    internal bool isMantling = false;
+    internal Vector3 wallClimbMantleStartPos;
+    internal Vector3 wallClimbMantleTargetPos;
+    internal float wallClimbMantleTimer = 0f;
+
+    // Animation
+    internal Animator animator;
+
+
     private Vector3 capsuleTop;
     private Vector3 capsuleBottom;
-    private Vector3 lastGroundedMove = Vector3.zero;
 
     void OnValidate()
     {
@@ -83,6 +98,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
         SetupModule(ref dashModuleScript, dashModule);
         SetupModule(ref wallRunningModuleScript, wallRunningModule);
         SetupModule(ref animationModuleScript, animationModule);
+        SetupModule(ref wallClimbModuleScript, wallClimbModule);
     }
 
     void SetupModule<T>(ref T module, bool enabled) where T : Behaviour
@@ -121,34 +137,34 @@ public class ModularCharacterControllerScript : MonoBehaviour
     {
         playerCharacterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        groundCheck = transform.Find("GroundCheck");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         if (cameraModuleScript != null)
         {
             cameraModuleScript.ActivateFirstPersonCamera();
-            thirdPersonTargetDistance = cameraModuleScript.thirdPersonMaxDistance;
-            thirdPersonCurrentDistance = cameraModuleScript.thirdPersonMaxDistance;
+            thirdPersonCameraTargetDistance = cameraModuleScript.thirdPersonMaxDistance;
+            thirdPersonCameraCurrentDistance = cameraModuleScript.thirdPersonMaxDistance;
         }
 
-
         if (cameraModule) cameraModuleScript?.Initialize(this);
-        if (jumpModule) jumpModuleScript?.Initialize(this);
-        if (sprintModule) sprintModuleScript?.Initialize(this);
+        if (jumpModule) jumpModuleScript?.Initialize(this, cameraModuleScript);
         if (crouchModule) crouchModuleScript?.Initialize(this);
-        if (dashModule) dashModuleScript?.Initialize(this);
+        if (sprintModule) sprintModuleScript?.Initialize(this, crouchModuleScript);
+        if (dashModule) dashModuleScript?.Initialize(this, cameraModuleScript);
         if (wallRunningModule) wallRunningModuleScript?.Initialize(this);
         if (animationModule) animationModuleScript?.Initialize(this);
+        if (wallClimbModule) wallClimbModuleScript?.Initialize(this);
     }
 
     void Update()
     {
         capsuleTop = transform.position;
-        capsuleBottom = new Vector3(transform.position.x, capsuleTop.y - capsuleLength, transform.position.z);
+        capsuleBottom = new Vector3(transform.position.x, capsuleTop.y - capsuleHeight, transform.position.z);
         MouseScreenLockToggle();
         Movement();
         Gravity();
+
         if (cameraModule) cameraModuleScript?.CameraSwitch();
         if (cameraModule) cameraModuleScript?.MouseLook();
         if (sprintModule) sprintModuleScript?.Sprint();
@@ -156,12 +172,9 @@ public class ModularCharacterControllerScript : MonoBehaviour
         if (dashModule) dashModuleScript?.Dash();
         if (jumpModule) jumpModuleScript?.Jump();
         if (wallRunningModule) wallRunningModuleScript?.HorizontalWallMovement();
+        if (wallClimbModule) wallClimbModuleScript?.WallClimbUpdate();
         if (animationModule) animationModuleScript?.Animations();
 
-        if (groundedCheck != (groundedCheck = IsGrounded()))
-        {
-            Debug.Log("Grounded state changed to: " + groundedCheck);
-        }
         DebugDrawCapsule(capsuleTop, capsuleBottom, capsuleRadius, IsGrounded() ? Color.green : Color.red);
 
         if (wallRunningModuleScript != null)
@@ -173,15 +186,26 @@ public class ModularCharacterControllerScript : MonoBehaviour
 
     void Gravity()
     {
-        velocity.y += -gravity * Time.deltaTime;
-
-        playerCharacterController.Move(velocity * Time.deltaTime);
-
-        if (playerCharacterController.isGrounded && velocity.y < 0)
+        if (!isWallClimbing)
         {
-            velocity.y = -2f;
+            totalVelocity.y += -gravity * Time.deltaTime;
+        }
+        else
+        {
+            totalVelocity.y = 0f;
+        }
+
+        playerCharacterController.Move(totalVelocity * Time.deltaTime);
+
+        if (playerCharacterController.isGrounded && totalVelocity.y < 0)
+        {
+            totalVelocity.y = -2f;
+
+            totalVelocity.x = 0f;
+            totalVelocity.z = 0f;
         }
     }
+
 
     public bool IsGrounded()
     {
@@ -196,12 +220,11 @@ public class ModularCharacterControllerScript : MonoBehaviour
 
         Vector3 moveInput = Vector3.zero;
 
-        if (isWallRunning)
+        if (isWallRunning || isWallClimbing)
         {
             horizontalVelocity = Vector3.zero;
             return;
         }
-
 
         if (firstPersonActive)
             moveInput = transform.TransformDirection(new Vector3(horizontal, 0f, vertical));
@@ -224,7 +247,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
         if (moveInput.sqrMagnitude > 0.001f)
             moveInput.Normalize();
         else
-            moveInput = Vector3.zero; 
+            moveInput = Vector3.zero;
 
         float currentSpeed = baseMovementSpeed;
         if (isCrouching && crouchModuleScript != null) currentSpeed = crouchModuleScript.crouchSpeed;
@@ -233,7 +256,6 @@ public class ModularCharacterControllerScript : MonoBehaviour
         if (IsGrounded())
         {
             horizontalVelocity = moveInput * currentSpeed;
-            lastGroundedMove = moveInput;
         }
         else
         {
@@ -241,7 +263,7 @@ public class ModularCharacterControllerScript : MonoBehaviour
                 horizontalVelocity = moveInput * currentSpeed;
         }
 
-        Vector3 totalMove = horizontalVelocity * Time.deltaTime + Vector3.up * velocity.y * Time.deltaTime;
+        Vector3 totalMove = horizontalVelocity * Time.deltaTime + Vector3.up * totalVelocity.y * Time.deltaTime;
         playerCharacterController.Move(totalMove);
     }
 
