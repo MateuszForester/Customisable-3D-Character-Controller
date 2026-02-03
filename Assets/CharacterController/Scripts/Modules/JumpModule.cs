@@ -30,6 +30,8 @@ public class JumpModule : MonoBehaviour
 
     void Update()
     {
+        if (controller == null) return;
+
         if (controller.isWallBouncing)
         {
             controller.transform.rotation = Quaternion.Slerp(
@@ -59,6 +61,8 @@ public class JumpModule : MonoBehaviour
 
     public void Jump()
     {
+        if (controller == null) return;
+
         bool grounded = controller.IsGrounded();
         if (grounded)
         {
@@ -66,7 +70,7 @@ public class JumpModule : MonoBehaviour
             controller.isWallBouncing = false;
         }
 
-        if (!Input.GetButtonDown("Jump")) return;
+        if (!Input.GetKeyDown(controller.jumpKey)) return;
 
         bool canJump = grounded || (allowMultiJump && controller.currentJumpCount < maxAdditionalJumpCount);
         if (!canJump && !allowWallRunBounce && !allowFrontalWallBounce) return;
@@ -98,7 +102,6 @@ public class JumpModule : MonoBehaviour
                 ApplyOmniDirectionalAirMovement();
             }
         }
-
     }
 
     private void DoBounce(Vector3 normal, bool fromWallRun)
@@ -118,7 +121,7 @@ public class JumpModule : MonoBehaviour
         {
             controller.isWallRunning = false;
             controller.wallRunCooldownActive = true;
-            controller.wallRunCooldownTimer = controller.wallRunningModuleScript.wallRunCooldown;
+            controller.wallRunCooldownTimer = controller.wallRunModuleScript.wallRunCooldown;
         }
         else
         {
@@ -133,17 +136,20 @@ public class JumpModule : MonoBehaviour
     private void ApplyOmniDirectionalAirMovement()
     {
         float h = 0f, v = 0f;
-        if (Input.GetKey(KeyCode.W)) v += 1f;
-        if (Input.GetKey(KeyCode.S)) v -= 1f;
-        if (Input.GetKey(KeyCode.A)) h -= 1f;
-        if (Input.GetKey(KeyCode.D)) h += 1f;
+
+        if (Input.GetKey(controller.moveForwardKey)) v += 1f;
+        if (Input.GetKey(controller.moveBackwardKey)) v -= 1f;
+        if (Input.GetKey(controller.moveLeftKey)) h -= 1f;
+        if (Input.GetKey(controller.moveRightKey)) h += 1f;
 
         if (h == 0f && v == 0f) return;
 
         Vector3 inputDir = Vector3.zero;
 
         if (controller.firstPersonActive)
-            inputDir = controller.transform.TransformDirection(new Vector3(h, 0, v));
+        {
+            inputDir = controller.transform.TransformDirection(new Vector3(h, 0f, v));
+        }
         else if (cameraModuleScript != null)
         {
             Vector3 camForward = cameraModuleScript.playerCameraThirdPerson.forward;

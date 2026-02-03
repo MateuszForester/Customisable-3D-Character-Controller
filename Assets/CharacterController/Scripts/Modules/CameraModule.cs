@@ -6,12 +6,11 @@ public class CameraModule : MonoBehaviour
     public float mouseSensitivity = 2f;
     public float thirdPersonMinDistance = 15f;
     public float thirdPersonMaxDistance = 80f;
-    public float thirdPersonScrollSensitivity = 10f;
+    public float thirdPersonZoomAdjustmentSensitivity = 10f;
     public float thirdPersonCollisionBuffer = 0.2f;
     public Transform playerCameraFirstPerson;
     public Transform playerCameraThirdPerson;
     public LayerMask thirdPersonCameraCollisionMask;
-    public KeyCode switchCameraKey = KeyCode.V;
 
     private ModularCharacterControllerScript controller;
 
@@ -22,7 +21,7 @@ public class CameraModule : MonoBehaviour
 
     public void CameraSwitch()
     {
-        if (Input.GetKeyDown(switchCameraKey))
+        if (Input.GetKeyDown(controller.switchCameraKey))
         {
             controller.firstPersonActive = !controller.firstPersonActive;
             if (controller.firstPersonActive) ActivateFirstPersonCamera();
@@ -103,7 +102,7 @@ public class CameraModule : MonoBehaviour
         controller.thirdPersonCameraPitch = Mathf.Clamp(controller.thirdPersonCameraPitch, -80f, 80f);
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        controller.thirdPersonCameraTargetDistance -= scroll * thirdPersonScrollSensitivity;
+        controller.thirdPersonCameraTargetDistance -= scroll * thirdPersonZoomAdjustmentSensitivity;
         controller.thirdPersonCameraTargetDistance = Mathf.Clamp(controller.thirdPersonCameraTargetDistance, thirdPersonMinDistance, thirdPersonMaxDistance);
 
         if (!disablePlayerRotation)

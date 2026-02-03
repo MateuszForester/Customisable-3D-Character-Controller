@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class WallRunningModule : MonoBehaviour
+public class WallRunModule : MonoBehaviour
 {
     private ModularCharacterControllerScript controller;
 
     [Header("Wall Run Settings")]
-    public float wallCheckDistance = 2f;
+    public float wallCheckDistance = 4f;
     public float wallRunCooldown = 1f;
     public LayerMask wallMask;
     public bool requireSprint = false;

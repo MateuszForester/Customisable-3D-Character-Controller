@@ -200,103 +200,6 @@ Transform:
   m_Father: {fileID: 805884323}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &81258032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 81258033}
-  - component: {fileID: 81258036}
-  - component: {fileID: 81258035}
-  - component: {fileID: 81258034}
-  m_Layer: 6
-  m_Name: Climbing Ledge 5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &81258033
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81258032}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.18249191, y: 0.06644995, z: -0.60154665}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &81258034
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81258032}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &81258035
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81258032}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &81258036
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81258032}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &104881339
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +212,7 @@ GameObject:
   - component: {fileID: 104881343}
   - component: {fileID: 104881342}
   - component: {fileID: 104881341}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,14 +226,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104881339}
-  m_LocalRotation: {x: -0, y: -0.8314694, z: -0, w: -0.55557054}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: 0.00000029533138, y: -0.8628938, z: -0.0000009599835, w: -0.5053854}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 472.5, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 479.286, z: 0}
 --- !u!65 &104881341
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,7 +309,7 @@ GameObject:
   - component: {fileID: 134670810}
   - component: {fileID: 134670809}
   - component: {fileID: 134670808}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,14 +323,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134670806}
-  m_LocalRotation: {x: -0, y: 0.8314698, z: -0, w: -0.55557}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: -0.0000009999277, y: 0.7971301, z: 0.000000094518825, w: -0.6038077}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 247.5, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 254.28601, z: 0}
 --- !u!65 &134670808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -503,7 +406,7 @@ GameObject:
   - component: {fileID: 203934189}
   - component: {fileID: 203934188}
   - component: {fileID: 203934187}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,14 +420,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203934185}
-  m_LocalRotation: {x: -0, y: 0.9807853, z: -0, w: 0.19509041}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: -0.00000064022066, y: 0.99061257, z: 0.00000077389024, w: 0.13669984}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75.00003, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 157.5, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 164.286, z: 0}
 --- !u!65 &203934187
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -587,103 +490,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203934185}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &277152037
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 277152038}
-  - component: {fileID: 277152041}
-  - component: {fileID: 277152040}
-  - component: {fileID: 277152039}
-  m_Layer: 6
-  m_Name: Climbing Ledge 8
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &277152038
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277152037}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.12513733, y: 0.45591843, z: -0.6015467}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &277152039
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277152037}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &277152040
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277152037}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &277152041
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277152037}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &289318997
 GameObject:
@@ -892,7 +698,7 @@ GameObject:
   - component: {fileID: 468895150}
   - component: {fileID: 468895149}
   - component: {fileID: 468895148}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,103 +783,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468895146}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &477165036
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 477165037}
-  - component: {fileID: 477165040}
-  - component: {fileID: 477165039}
-  - component: {fileID: 477165038}
-  m_Layer: 6
-  m_Name: Climbing Ledge 9
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &477165037
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477165036}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.21951167, y: 0.12598997, z: -0.6015461}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &477165038
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477165036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &477165039
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477165036}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &477165040
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477165036}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &481364779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,7 +795,7 @@ GameObject:
   - component: {fileID: 481364783}
   - component: {fileID: 481364782}
   - component: {fileID: 481364781}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,103 +879,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481364779}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &521383851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 521383852}
-  - component: {fileID: 521383855}
-  - component: {fileID: 521383854}
-  - component: {fileID: 521383853}
-  m_Layer: 6
-  m_Name: Climbing Ledge 6
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &521383852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521383851}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.063090086, y: 0.22048935, z: -0.6015466}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &521383853
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521383851}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &521383854
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521383851}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &521383855
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521383851}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &606914978
 GameObject:
@@ -1388,7 +1000,7 @@ GameObject:
   - component: {fileID: 621330492}
   - component: {fileID: 621330491}
   - component: {fileID: 621330490}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 6 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,7 +1097,7 @@ GameObject:
   - component: {fileID: 639709239}
   - component: {fileID: 639709238}
   - component: {fileID: 639709237}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1499,14 +1111,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639709235}
-  m_LocalRotation: {x: -0, y: -0.98078537, z: -0, w: 0.19509031}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: 0.0000008876422, y: -0.96751934, z: -0.00000046997965, w: 0.25279695}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75.00006, y: 4.2811885, z: 15.000011}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 562.5, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 569.286, z: 0}
 --- !u!65 &639709237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1582,7 +1194,7 @@ GameObject:
   - component: {fileID: 654964144}
   - component: {fileID: 654964143}
   - component: {fileID: 654964142}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,14 +1208,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654964140}
-  m_LocalRotation: {x: -0, y: 0.3826836, z: -0, w: -0.92387944}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: -0.00000088392187, y: 0.32733297, z: -0.00000047694004, w: -0.9449091}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 315, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 321.786, z: 0}
 --- !u!65 &654964142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2100,7 +1712,7 @@ GameObject:
   - component: {fileID: 853474058}
   - component: {fileID: 853474057}
   - component: {fileID: 853474056}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 8 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2295,7 +1907,7 @@ GameObject:
   - component: {fileID: 994392018}
   - component: {fileID: 994392017}
   - component: {fileID: 994392016}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2478,103 +2090,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016878371}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1021526950
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1021526951}
-  - component: {fileID: 1021526954}
-  - component: {fileID: 1021526953}
-  - component: {fileID: 1021526952}
-  m_Layer: 6
-  m_Name: Climbing Ledge 4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1021526951
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021526950}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.017206362, y: -0.08103461, z: -0.60154635}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1021526952
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021526950}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1021526953
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021526950}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1021526954
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021526950}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1030285559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,7 +2230,7 @@ GameObject:
   - component: {fileID: 1064502291}
   - component: {fileID: 1064502290}
   - component: {fileID: 1064502289}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2729,14 +2244,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064502287}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: 0.0000006341192, y: 0.059185818, z: 0.00000077889786, w: 0.99824697}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 6.786, z: 0}
 --- !u!65 &1064502289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2812,7 +2327,7 @@ GameObject:
   - component: {fileID: 1155789836}
   - component: {fileID: 1155789835}
   - component: {fileID: 1155789834}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2826,14 +2341,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155789832}
-  m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: -0.92387956}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: -0.00000028777848, y: -0.43669355, z: -0.0000009622748, w: -0.8996103}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 405, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 411.786, z: 0}
 --- !u!65 &1155789834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3091,103 +2606,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182739753}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1231761610
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1231761611}
-  - component: {fileID: 1231761614}
-  - component: {fileID: 1231761613}
-  - component: {fileID: 1231761612}
-  m_Layer: 6
-  m_Name: Climbing Ledge 3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1231761611
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231761610}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.017206362, y: -0.18645868, z: -0.60154635}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1231761612
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231761610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1231761613
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231761610}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1231761614
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231761610}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1246608311
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,7 +2618,7 @@ GameObject:
   - component: {fileID: 1246608315}
   - component: {fileID: 1246608314}
   - component: {fileID: 1246608313}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3284,103 +2702,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246608311}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1267179707
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1267179708}
-  - component: {fileID: 1267179711}
-  - component: {fileID: 1267179710}
-  - component: {fileID: 1267179709}
-  m_Layer: 6
-  m_Name: Climbing Ledge 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1267179708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267179707}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.2388037, y: -0.3301196, z: -0.6015461}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1267179709
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267179707}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1267179710
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267179707}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1267179711
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267179707}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1311707089
 GameObject:
@@ -3529,7 +2850,7 @@ GameObject:
   - component: {fileID: 1442205536}
   - component: {fileID: 1442205535}
   - component: {fileID: 1442205534}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3714,104 +3035,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451407955}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1460378632
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1460378636}
-  - component: {fileID: 1460378635}
-  - component: {fileID: 1460378634}
-  - component: {fileID: 1460378633}
-  m_Layer: 3
-  m_Name: Plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!64 &1460378633
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460378632}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1460378634
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460378632}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1460378635
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460378632}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1460378636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460378632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.5, y: 180.6, z: -227.4}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463758801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3824,7 +3047,7 @@ GameObject:
   - component: {fileID: 1463758805}
   - component: {fileID: 1463758804}
   - component: {fileID: 1463758803}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 7 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3838,14 +3061,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463758801}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.000026130301, z: 0}
+  m_LocalRotation: {x: -0.000000102373065, y: 0.74771774, z: 0.0000009991543, w: 0.6640167}
+  m_LocalPosition: {x: 0, y: 0.000026028227, z: 0}
   m_LocalScale: {x: 75.000015, y: 4.2811885, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 266863}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 96.786, z: 0}
 --- !u!65 &1463758803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4019,7 +3242,7 @@ GameObject:
   - component: {fileID: 1487146619}
   - component: {fileID: 1487146618}
   - component: {fileID: 1487146617}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4116,7 +3339,7 @@ GameObject:
   - component: {fileID: 1588661021}
   - component: {fileID: 1588661020}
   - component: {fileID: 1588661019}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climbing Ledge 4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4200,103 +3423,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588661017}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1743933929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1743933930}
-  - component: {fileID: 1743933933}
-  - component: {fileID: 1743933932}
-  - component: {fileID: 1743933931}
-  m_Layer: 6
-  m_Name: Climbing Ledge 7
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1743933930
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743933929}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.3232714, y: 0.33301464, z: -0.60154694}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1743933931
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743933929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1743933932
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743933929}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1743933933
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743933929}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1829115687
 GameObject:
@@ -4492,103 +3618,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842900438}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1893349789
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1893349790}
-  - component: {fileID: 1893349793}
-  - component: {fileID: 1893349792}
-  - component: {fileID: 1893349791}
-  m_Layer: 6
-  m_Name: Climbing Ledge 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1893349790
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893349789}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.33891353, y: -0.3301196, z: -0.60154694}
-  m_LocalScale: {x: 0.35806346, y: 0.027311955, z: 0.07821079}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1923354113}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1893349791
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893349789}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1893349792
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893349789}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 2bb6610ae388942418bc98b7491cc883, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1893349793
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893349789}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1923354112
 GameObject:
   m_ObjectHideFlags: 0
@@ -4619,16 +3648,7 @@ Transform:
   m_LocalPosition: {x: 0.39322606, y: 0, z: 17.144085}
   m_LocalScale: {x: 13.734555, y: 1, z: 0.053623132}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1893349790}
-  - {fileID: 1267179708}
-  - {fileID: 1231761611}
-  - {fileID: 1021526951}
-  - {fileID: 81258033}
-  - {fileID: 521383852}
-  - {fileID: 1743933930}
-  - {fileID: 277152038}
-  - {fileID: 477165037}
+  m_Children: []
   m_Father: {fileID: 52072262}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -5791,15 +4811,15 @@ GameObject:
   - component: {fileID: 4230243322763242912}
   - component: {fileID: 4230243322763242909}
   - component: {fileID: 4230243322763242920}
-  - component: {fileID: 4230243322763242919}
   - component: {fileID: 4230243322763242918}
   - component: {fileID: 4230243322763242917}
   - component: {fileID: 4230243322763242916}
-  - component: {fileID: 4230243322763242915}
   - component: {fileID: 4230243322763242914}
-  - component: {fileID: 4230243322763242913}
+  - component: {fileID: 4230243322763242921}
+  - component: {fileID: 4230243322763242923}
+  - component: {fileID: 4230243322763242924}
   m_Layer: 0
-  m_Name: Player_ForestGuardian
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5937,26 +4957,35 @@ MonoBehaviour:
   sprintModule: 1
   crouchModule: 1
   dashModule: 1
-  wallRunningModule: 1
+  wallRunModule: 1
   animationModule: 1
   wallClimbModule: 1
   cameraModuleScript: {fileID: 4230243322763242920}
-  jumpModuleScript: {fileID: 4230243322763242919}
+  jumpModuleScript: {fileID: 4230243322763242924}
   sprintModuleScript: {fileID: 4230243322763242918}
   crouchModuleScript: {fileID: 4230243322763242916}
   dashModuleScript: {fileID: 4230243322763242917}
-  wallRunningModuleScript: {fileID: 4230243322763242915}
+  wallRunModuleScript: {fileID: 4230243322763242921}
   animationModuleScript: {fileID: 4230243322763242914}
-  wallClimbModuleScript: {fileID: 4230243322763242913}
+  wallClimbModuleScript: {fileID: 4230243322763242923}
   baseMovementSpeed: 50
   gravity: 100
-  capsuleGroundDistance: 0.2
   capsuleRadius: 2.5
-  capsuleLength: 10
-  lockMouseKey: 9
-  groundMask:
+  capsuleHeight: 10
+  groundAndWallMask:
     serializedVersion: 2
     m_Bits: 72
+  lockMouseKey: 9
+  moveForwardKey: 119
+  moveBackwardKey: 115
+  moveLeftKey: 97
+  moveRightKey: 100
+  switchCameraKey: 118
+  jumpKey: 32
+  sprintKey: 304
+  crouchKey: 99
+  dashKey: 102
+  climbKey: 101
 --- !u!143 &4230243322763242910
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6010,37 +5039,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4230243322763242913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3602606263817811750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d66827c22bcb9f4da3f06ef20075c53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbKey: 101
-  wallCheckDistance: 5
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 64
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  maxClimbAngle: 45
-  wallStickForce: 5
-  climbToggle: 1
-  horizontalClimbSpeed: 25
-  verticalClimbSpeed: 25
-  cornerTurnSpeed: 15
-  topCheckHeight: 2
-  topSnapForwardOffset: 1
-  topSnapUpOffset: 2
-  mantleDistance: 1
-  mantleDuration: 0.4
 --- !u!114 &4230243322763242914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6054,28 +5052,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionDuration: 0.25
---- !u!114 &4230243322763242915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3602606263817811750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fc4094330d89e43bbe151a5ffe92cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallCheckDistance: 5
-  wallRunCooldown: 1
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 64
-  requireSprint: 0
-  maxWallRunDuration: 3
-  playerRotationSmoothSpeed: 5
-  walkWallRunSpeed: 15
-  sprintWallRunSpeed: 60
 --- !u!114 &4230243322763242916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6088,11 +5064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f552af91ba42784a8ebd15368b1362c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crouchHeight: 2
+  crouchHeight: 1.5
   standingHeight: 2
   crouchSpeed: 15
   crouchToggle: 0
-  crouchKey: 306
 --- !u!114 &4230243322763242917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6109,7 +5084,6 @@ MonoBehaviour:
   dashDistance: 50
   dashSpeed: 200
   allowAirDash: 1
-  dashKey: 99
 --- !u!114 &4230243322763242918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6124,8 +5098,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprintSpeed: 75
   sprintToggle: 0
-  sprintKey: 304
---- !u!114 &4230243322763242919
+--- !u!114 &4230243322763242920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602606263817811750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02de9ffd0a52a7488cf3215acd4e33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 2
+  thirdPersonMinDistance: 15
+  thirdPersonMaxDistance: 80
+  thirdPersonZoomAdjustmentSensitivity: 10
+  thirdPersonCollisionBuffer: 0.2
+  playerCameraFirstPerson: {fileID: 2242303848426266311}
+  playerCameraThirdPerson: {fileID: 2242303848901635275}
+  thirdPersonCameraCollisionMask:
+    serializedVersion: 2
+    m_Bits: 72
+--- !u!114 &4230243322763242921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602606263817811750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fc4094330d89e43bbe151a5ffe92cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallCheckDistance: 4
+  wallRunCooldown: 1
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 64
+  requireSprint: 0
+  maxWallRunDuration: 3
+  playerRotationSmoothSpeed: 5
+  walkWallRunSpeed: 15
+  sprintWallRunSpeed: 60
+--- !u!114 &4230243322763242923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602606263817811750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d66827c22bcb9f4da3f06ef20075c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallCheckDistance: 7
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  maxClimbAngle: 45
+  wallStickForce: 30
+  climbToggle: 1
+  horizontalClimbSpeed: 25
+  verticalClimbSpeed: 25
+  cornerTurnSpeed: 15
+  mantleDistance: 1
+  mantleDuration: 0.4
+  cornerCommitDuration: 0.18
+  cornerSwitchCooldown: 0.12
+  cornerNormalDifferenceThreshold: 0.85
+  cornerPullStrength: 30
+  cornerPullMax: 6
+  wallDistanceExtraOffset: 0.02
+  seamSlideStrength: 25
+  seamSlideMax: 6
+--- !u!114 &4230243322763242924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6144,36 +5196,13 @@ MonoBehaviour:
   maxAdditionalJumpCount: 2
   allowWallRunBounce: 1
   allowFrontalWallBounce: 1
-  wallBounceStrength: 100
+  wallBounceStrength: 20
   wallBounceUpwardBoost: 12
   wallMask:
     serializedVersion: 2
     m_Bits: 64
   rotationSmoothSpeed: 10
   distanceFromWallToBounce: 3
---- !u!114 &4230243322763242920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3602606263817811750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c02de9ffd0a52a7488cf3215acd4e33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 2
-  thirdPersonMinDistance: 15
-  thirdPersonMaxDistance: 80
-  thirdPersonScrollSensitivity: 10
-  thirdPersonCollisionBuffer: 0.2
-  playerCameraFirstPerson: {fileID: 2242303848426266311}
-  playerCameraThirdPerson: {fileID: 2242303848901635275}
-  thirdPersonCameraCollisionMask:
-    serializedVersion: 2
-    m_Bits: 72
-  switchCameraKey: 118
 --- !u!1 &4256546781772667685
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,7 +5972,7 @@ GameObject:
   - component: {fileID: 512421964941886222}
   - component: {fileID: 5722260128577461665}
   m_Layer: 0
-  m_Name: ForestGuardianModel
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

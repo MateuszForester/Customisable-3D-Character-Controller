@@ -5,7 +5,6 @@ public class SprintModule : MonoBehaviour
     [Header("Sprint Settings")]
     public float sprintSpeed = 75f;
     public bool sprintToggle = false;
-    public KeyCode sprintKey = KeyCode.LeftShift;
 
     private ModularCharacterControllerScript controller;
     private CrouchModule crouchModuleScript;
@@ -20,7 +19,7 @@ public class SprintModule : MonoBehaviour
     {
         if (sprintToggle)
         {
-            if (Input.GetKeyDown(sprintKey))
+            if (Input.GetKeyDown(controller.sprintKey))
             {
                 ToggleSprint();
                 crouchModuleScript.SetCrouch(false);
@@ -28,7 +27,7 @@ public class SprintModule : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(sprintKey))
+            if (Input.GetKey(controller.sprintKey))
             {
                 SetSprint(true);
             }

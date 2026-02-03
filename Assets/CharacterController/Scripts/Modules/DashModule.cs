@@ -7,7 +7,6 @@ public class DashModule : MonoBehaviour
     public float dashDistance = 50f;
     public float dashSpeed = 200f;
     public bool allowAirDash = true;
-    public KeyCode dashKey = KeyCode.C;
 
     private ModularCharacterControllerScript controller;
     private CameraModule cameraModuleScript;
@@ -23,7 +22,7 @@ public class DashModule : MonoBehaviour
         if (controller.dashCooldownTimer > 0f)
             controller.dashCooldownTimer -= Time.deltaTime;
 
-        if (!controller.isDashing && controller.dashCooldownTimer <= 0f && Input.GetKeyDown(dashKey) && (controller.IsGrounded() || allowAirDash))
+        if (!controller.isDashing && controller.dashCooldownTimer <= 0f && Input.GetKeyDown(controller.dashKey) && (controller.IsGrounded() || allowAirDash))
         {
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
